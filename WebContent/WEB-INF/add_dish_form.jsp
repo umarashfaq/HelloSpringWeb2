@@ -13,15 +13,16 @@
 	<h1>Add New Dish</h1>
 	
 	<form:form>
-		<label>Title</label><form:input path="title"/><br/>
+		<form:errors/><br/>
+		<label>Title</label><form:input path="title"/><form:errors path="title"/><br/>
 		<label>Cost</label>
 		<form:select path="cost">
 			<form:option value="500">500</form:option>
 			<form:option value="1000">1000</form:option>
 			<form:option value="2000">2000</form:option>
 			<form:option value="3000">3000</form:option>
-		</form:select><br/>
-		<label>Price</label><form:input path="price"/><br/>
+		</form:select><form:errors path="cost"/><br/>
+		<label>Price</label><form:input path="price"/><form:errors path="price"/><br/>
 		<label>Description</label><form:input path="description"/><br/>
 		<input type="submit"/>
 	</form:form>

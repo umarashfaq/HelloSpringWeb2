@@ -1,9 +1,30 @@
 package com.umar.test;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Dish {
+	
+	private int id;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	@NotBlank	
 	private String title;
+	
+	@Min(1000)
+	@Max(3000)
 	private int cost;
 	private int price;
+	
+	@Size(min=6, max=20)
 	private String description;
 	
 	public String getTitle() {
@@ -34,6 +55,19 @@ public class Dish {
 	public String toString() {
 		return "Dish [title=" + title + ", cost=" + cost + ", price=" + price
 				+ ", description=" + description + "]";
+	}
+	
+	public Dish() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Dish(int id, String title, int cost, int price, String description) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.cost = cost;
+		this.price = price;
+		this.description = description;
 	}
 	
 	
