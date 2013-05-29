@@ -15,8 +15,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +36,9 @@ public class HelloController {
 	private static final String VIEW_DISH_FORM = "/WEB-INF/add_dish_form.jsp";
 	private static final String VIEW_DISH_FORM_SUCCESS = "/WEB-INF/add_dish_form_success.jsp";
 	private static final String VIEW_DISH_LIST = "/WEB-INF/dishes.jsp";
+	
+	@Autowired
+	private DataSource dataSource;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -130,9 +135,11 @@ public class HelloController {
 	
 	private Connection getConnection() {
 		try { 
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost/restaurant_db", "root", "");
-			return c;
+//			Class.forName("com.mysql.jdbc.Driver");
+//			Connection c = DriverManager.getConnection("jdbc:mysql://localhost/restaurant_db", "root", "");
+//			return c;
+			
+			return dataSource.getConnection();
 		} catch ( Exception e ) {
 			throw new RuntimeException(e);		
 		}
