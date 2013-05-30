@@ -1,21 +1,30 @@
 package com.umar.test;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 
+@Entity
+@Table(name="dishes")
 public class Dish {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	@NotBlank	
 	private String title;
 	
@@ -26,6 +35,26 @@ public class Dish {
 	
 	@Size(min=6, max=20)
 	private String description;
+	
+	@OneToMany(mappedBy="dish")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Ingredient> ingredients;
+	
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getTitle() {
 		return title;

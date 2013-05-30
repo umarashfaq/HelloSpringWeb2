@@ -10,26 +10,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Dishes</h1>
+	<h1>Ingredients</h1>
 	
 	<table>
 		<tr>
 			<th>ID</th>
-			<th>Title</th>
-			<th>Cost</th>
-			<th>Price</th>
-			<th>Description</th>
-			<th>First Ingredient</th>			
+			<th>Name</th>
+			<th>Dish</th>
 		</tr>
 		
-	<c:forEach var="d" items="${dishes }">
+	<c:forEach var="i" items="${ingredients }">
 		<tr>
-			<td>${d.id }</td>
-			<td>${d.title }</td>
-			<td>${d.cost }</td>
-			<td>${d.price }</td>
-			<td>${d.description }</td>
-			<td>${d.ingredients[0].name }</td>			
+			<td>${i.id }</td>
+			<td>${i.name }</td>
+			<td><a href="/dishes/${i.dish.id }">${i.dish.title }</a></td>
 		</tr>
 	</c:forEach>
 	</table>
